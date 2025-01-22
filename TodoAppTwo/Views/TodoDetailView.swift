@@ -34,7 +34,7 @@ struct TodoDetailView: View {
         }
         .navigationTitle(item.title)
         .sheet(isPresented: $showingEditView) {
-            EditTodoView()
+            EditTodoView(todo: item)
         }
         
     }
