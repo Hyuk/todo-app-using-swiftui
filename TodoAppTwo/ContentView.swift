@@ -11,6 +11,8 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var todos: [TodoItem]
+    
+    @State private var showingAddTodo: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -30,18 +32,16 @@ struct ContentView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button(action: {
+                        showingAddTodo = true
+                    }) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = TodoItem(title: "New Item", createdAt: Date())
-            modelContext.insert(newItem)
+        .sheet(isPresented: $showingAddTodo) {
+            AddTodoView()
         }
     }
 
