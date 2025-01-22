@@ -11,6 +11,8 @@ struct TodoDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     
+    @State private var showingEditView: Bool = false
+    
     var item: TodoItem
     
     var body: some View {
@@ -25,10 +27,14 @@ struct TodoDetailView: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button("Edit") {
-                            
+                            showingEditView = true
                         }
                     }
                 }
+        }
+        .navigationTitle(item.title)
+        .sheet(isPresented: $showingEditView) {
+            EditTodoView()
         }
         
     }
