@@ -13,7 +13,7 @@ struct ContentView: View {
     @Query private var todos: [TodoItem]
 
     var body: some View {
-        NavigationSplitView {
+        NavigationStack {
             List {
                 ForEach(todos) { item in
                     NavigationLink {
@@ -34,8 +34,6 @@ struct ContentView: View {
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
         }
     }
 
