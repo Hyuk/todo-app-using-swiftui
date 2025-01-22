@@ -8,8 +8,36 @@
 import SwiftUI
 
 struct AddTodoView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var title: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            Form {
+                Section {
+                    TextField("Title", text: $title)
+                }
+            }
+            .navigationTitle("New Todo")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Save") {
+                        let todo = TodoItem(title: title)
+                        modelContext.insert(todo)
+                        dismiss()
+                    }
+                }
+            }
+        }
+        
+        
     }
 }
 
