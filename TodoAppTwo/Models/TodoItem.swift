@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class TodoItem: Identifiable, Hashable {
+final class TodoItem {
     var id: String = UUID().uuidString
     var title: String
     var isCompleted: Bool
@@ -19,13 +19,5 @@ final class TodoItem: Identifiable, Hashable {
         self.title = title
         self.isCompleted = isCompleted
         self.createdAt = createdAt
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    static func == (lhs: TodoItem, rhs: TodoItem) -> Bool {
-        lhs.id == rhs.id
     }
 }
