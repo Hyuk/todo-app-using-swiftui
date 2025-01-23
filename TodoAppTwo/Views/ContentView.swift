@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Query private var todos: [TodoItem]
     
     @State private var showingAddTodo: Bool = false
 

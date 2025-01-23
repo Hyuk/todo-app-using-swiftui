@@ -8,6 +8,11 @@
 import SwiftUI
 import SwiftData
 
+enum TodoNavigation: Hashable {
+    case detail(TodoItem)
+    case edit(TodoItem)
+}
+
 struct TodoListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var todos: [TodoItem]
@@ -18,6 +23,14 @@ struct TodoListView: View {
                 TodoRowView(item: item)
             }
             .onDelete(perform: deleteItems)
+        }
+        .navigationDestination(for: TodoNavigation.self) { navigation in
+            switch navigation {
+                case .detail(let item):
+                    TodoDetailView(item: item)
+                case .edit(let item):
+                    EditTodoView(todo: item)
+            }
         }
     }
     

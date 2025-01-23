@@ -16,26 +16,24 @@ struct TodoDetailView: View {
     var item: TodoItem
     
     var body: some View {
-        NavigationStack {
-            Text("\(item.title) at \(item.createdAt, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Delete") {
-                            modelContext.delete(item)
-                            dismiss()
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Edit") {
-                            showingEditView = true
-                        }
+        Text("\(item.title) at \(item.createdAt, format: Date.FormatStyle(date: .numeric, time: .standard))")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Delete") {
+                        modelContext.delete(item)
+                        dismiss()
                     }
                 }
-        }
-        .navigationTitle(item.title)
-        .sheet(isPresented: $showingEditView) {
-            EditTodoView(todo: item)
-        }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Edit") {
+                        showingEditView = true
+                    }
+                }
+            }
+            .navigationTitle(item.title)
+            .sheet(isPresented: $showingEditView) {
+                EditTodoView(todo: item)
+            }
         
     }
 }
