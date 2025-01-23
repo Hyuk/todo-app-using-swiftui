@@ -20,19 +20,19 @@ struct TodoRowView: View {
                 Image(systemName: todo.isCompleted ? "checkmark.square.fill" : "square")
                     .foregroundStyle(todo.isCompleted ? .green : .gray)
             })
-            Text("\(todo.title) at \(todo.createdAt, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .lineLimit(1)
-                .onLongPressGesture {
-                    showingEditView = true
-                }
-            NavigationLink(value: TodoNavigation.detail(todo)) {
-                Text(" ")
+            VStack(alignment: .leading) {
+                Text(todo.title)
+                Text(todo.createdAt, format: Date.FormatStyle(date: .numeric, time: .standard))
+                    .font(.caption)
+                    .foregroundStyle(.gray)
+            }
+            .onLongPressGesture(minimumDuration: 0.5) {
+                showingEditView = true
             }
         }
         .swipeActions(edge: .leading) {
-            NavigationLink(value: TodoNavigation.edit(todo)) {
-                Text("Edit")
+            NavigationLink(value: TodoNavigation.detail(todo)) {
+                Text("Detail")
             }
             .tint(.yellow)
         }
