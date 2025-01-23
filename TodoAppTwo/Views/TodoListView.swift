@@ -15,15 +15,10 @@ struct TodoListView: View {
     var body: some View {
         List {
             ForEach(todos) { item in
-                NavigationLink {
-                    TodoDetailView(item: item)
-                } label: {
-                    Text("\(item.title) at \(item.createdAt, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                }
+                TodoRowView(item: item)
             }
             .onDelete(perform: deleteItems)
         }
-        
     }
     
     private func deleteItems(offsets: IndexSet) {
