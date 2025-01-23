@@ -39,5 +39,12 @@ struct TodoRowView: View {
 }
 
 #Preview {
-    TodoRowView(item: TodoItem(title: "Hello World"))
+    NavigationStack {
+        List {
+            TodoRowView(item: TodoItem(title: "Hello World"))
+        }
+        .navigationTitle("Todo List")
+    }
+    
+    
 }
