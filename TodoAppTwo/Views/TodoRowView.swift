@@ -8,37 +8,37 @@
 import SwiftUI
 
 struct TodoRowView: View {
-    let item: TodoItem
+    let todo: TodoItem
     
     @State private var showingEditView: Bool = false
     
     var body: some View {
         HStack {
             Button(action: {
-                item.isCompleted.toggle()
+                todo.isCompleted.toggle()
             }, label: {
-                Image(systemName: item.isCompleted ? "checkmark.square.fill" : "square")
-                    .foregroundStyle(item.isCompleted ? .green : .gray)
+                Image(systemName: todo.isCompleted ? "checkmark.square.fill" : "square")
+                    .foregroundStyle(todo.isCompleted ? .green : .gray)
             })
-            Text("\(item.title) at \(item.createdAt, format: Date.FormatStyle(date: .numeric, time: .standard))")
+            Text("\(todo.title) at \(todo.createdAt, format: Date.FormatStyle(date: .numeric, time: .standard))")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .lineLimit(1)
                 .onLongPressGesture {
                     showingEditView = true
                 }
-            NavigationLink(value: TodoNavigation.detail(item)) {
+            NavigationLink(value: TodoNavigation.detail(todo)) {
                 Text(" ")
             }
         }
         .swipeActions(edge: .leading) {
-            NavigationLink(value: TodoNavigation.edit(item)) {
+            NavigationLink(value: TodoNavigation.edit(todo)) {
                 Text("Edit")
             }
             .tint(.yellow)
         }
         .sheet(isPresented: $showingEditView) {
             NavigationStack {
-                EditTodoView(todo: item)
+                EditTodoView(todo: todo)
             }
         }
     }
@@ -47,7 +47,7 @@ struct TodoRowView: View {
 #Preview {
     NavigationStack {
         List {
-            TodoRowView(item: TodoItem(title: "Hello World"))
+            TodoRowView(todo: TodoItem(title: "Hello World"))
         }
         .navigationTitle("Todo List")
     }
