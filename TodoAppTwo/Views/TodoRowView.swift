@@ -14,6 +14,12 @@ struct TodoRowView: View {
     
     var body: some View {
         HStack {
+            Button(action: {
+                item.isCompleted.toggle()
+            }, label: {
+                Image(systemName: item.isCompleted ? "checkmark.square.fill" : "square")
+                    .foregroundStyle(item.isCompleted ? .green : .gray)
+            })
             Text("\(item.title) at \(item.createdAt, format: Date.FormatStyle(date: .numeric, time: .standard))")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .lineLimit(1)
