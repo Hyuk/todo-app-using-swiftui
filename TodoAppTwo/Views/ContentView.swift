@@ -11,10 +11,12 @@ import SwiftData
 struct ContentView: View {
     
     @State private var showingAddTodo: Bool = false
+    @State private var searchText = ""
 
     var body: some View {
         NavigationStack {
-            TodoListView()
+            TodoListView(searchText: searchText)
+                .searchable(text: $searchText)
                 .navigationTitle("Todo List")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
