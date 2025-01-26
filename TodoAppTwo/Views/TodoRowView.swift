@@ -22,9 +22,13 @@ struct TodoRowView: View {
             })
             VStack(alignment: .leading) {
                 Text(todo.title)
+                    .strikethrough(todo.isCompleted)
                 Text(todo.createdAt, format: Date.FormatStyle(date: .numeric, time: .standard))
                     .font(.caption)
                     .foregroundStyle(.gray)
+            }
+            .onTapGesture {
+                todo.isCompleted.toggle()
             }
             .onLongPressGesture(minimumDuration: 0.5) {
                 showingEditView = true
