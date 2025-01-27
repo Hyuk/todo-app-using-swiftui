@@ -37,19 +37,19 @@ class PreviewContainer {
         let calendar = Calendar.current
         
         // 예제 데이터 생성
-        let todos: [(String, Date)] = [
-            ("Buy groceries", today),
-            ("Walk the dog", calendar.date(byAdding: .day, value: 1, to: today)!),
-            ("Do the laundry", calendar.date(byAdding: .day, value: 2, to: today)!),
-            ("Take out the trash", calendar.date(byAdding: .day, value: 3, to: today)!),
-            ("완료된 작업", calendar.date(byAdding: .day, value: 4, to: today)!),
-            ("운동하기", calendar.date(byAdding: .day, value: 5, to: today)!),
-            ("책 읽기", calendar.date(byAdding: .day, value: 6, to: today)!),
-            ("SwiftUI 공부", calendar.date(byAdding: .day, value: 7, to: today)!),
+        let todos: [(String, Date, Priority)] = [
+            ("Buy groceries", today, .low),
+            ("Walk the dog", calendar.date(byAdding: .day, value: 1, to: today)!, .medium),
+            ("Do the laundry", calendar.date(byAdding: .day, value: 2, to: today)!, .medium),
+            ("Take out the trash", calendar.date(byAdding: .day, value: 3, to: today)!, .low),
+            ("완료된 작업", calendar.date(byAdding: .day, value: 4, to: today)!, .low),
+            ("운동하기", calendar.date(byAdding: .day, value: 5, to: today)!, .high),
+            ("책 읽기", calendar.date(byAdding: .day, value: 6, to: today)!, .high),
+            ("SwiftUI 공부", calendar.date(byAdding: .day, value: 7, to: today)!, .high),
         ]
         
-        for (title, date) in todos {
-            let todo = TodoItem(title: title, createdAt: date)
+        for (title, date, priority) in todos {
+            let todo = TodoItem(title: title, priority: priority, createdAt: date)
             container.mainContext.insert(todo)
         }
         

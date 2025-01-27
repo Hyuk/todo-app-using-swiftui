@@ -23,7 +23,8 @@ struct TodoRowView: View {
                     .font(.caption)
                     .foregroundStyle(.gray)
             }
-            
+            Spacer()
+            PriorityBadge(priority: todo.priority)
         }
         .onTapGesture {
             todo.isCompleted.toggle()
@@ -55,3 +56,5 @@ struct TodoRowView: View {
     
     
 }
+
+
