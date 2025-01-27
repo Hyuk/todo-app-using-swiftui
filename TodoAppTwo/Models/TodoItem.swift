@@ -14,6 +14,7 @@ final class TodoItem {
     var title: String
     var isCompleted: Bool
     var dueDate: Date?
+    var category: Category? = nil
     var createdAt: Date
     var priority: Priority = Priority.medium
     
@@ -21,11 +22,13 @@ final class TodoItem {
          isCompleted: Bool = false,
          priority: Priority = Priority.medium,
          dueDate: Date? = nil,
+         category: Category? = nil,
          createdAt: Date = Date()) {
         self.title = title
         self.isCompleted = isCompleted
         self.priority = priority
         self.dueDate = dueDate
+        self.category = category
         self.createdAt = createdAt
     }
 }
