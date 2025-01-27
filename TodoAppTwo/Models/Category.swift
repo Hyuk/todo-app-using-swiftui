@@ -11,7 +11,7 @@ import SwiftData
 @Model
 final class Category {
     var id: String = UUID().uuidString
-    var name: String
+    var name: String?
     
     @Relationship(deleteRule: .cascade)
     var todos: [TodoItem]? = []
