@@ -27,12 +27,24 @@ struct ContentView: View {
                             .foregroundStyle(.white)
                             .background(.gray)
                             .clipShape(.rect(cornerRadius: 4))
+                            .overlay {
+                                if priorityFilter == nil {
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .stroke(.blue, lineWidth: 2)
+                                }
+                            }
                     }
                     ForEach([Priority.low, Priority.medium, Priority.high], id: \.self) { priority in
                         Button {
                             priorityFilter = priority
                         } label: {
                             PriorityBadge(priority: priority)
+                        }
+                        .overlay {
+                            if priorityFilter == priority {
+                                RoundedRectangle(cornerRadius: 4)
+                                    .stroke(.blue, lineWidth: 2)
+                            }
                         }
                     }
                 }
