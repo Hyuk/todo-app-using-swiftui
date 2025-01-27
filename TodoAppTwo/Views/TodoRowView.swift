@@ -19,9 +19,11 @@ struct TodoRowView: View {
             VStack(alignment: .leading) {
                 Text(todo.title)
                     .strikethrough(todo.isCompleted)
-                Text(todo.createdAt, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    .font(.caption)
-                    .foregroundStyle(.gray)
+                if let dueDate = todo.dueDate {
+                    Text(dueDate, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        .font(.caption)
+                        .foregroundStyle(dueDate > Date.now ? .gray : .red)
+                }
             }
             Spacer()
             PriorityBadge(priority: todo.priority)
@@ -49,7 +51,7 @@ struct TodoRowView: View {
 #Preview {
     NavigationStack {
         List {
-            TodoRowView(todo: TodoItem(title: "Hello World"))
+            TodoRowView(todo: TodoItem(title: "Hello, world!", dueDate: Date().addingTimeInterval(1000)))
         }
         .navigationTitle("Todo List")
     }
