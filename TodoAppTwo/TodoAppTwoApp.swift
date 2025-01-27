@@ -16,8 +16,7 @@ struct TodoAppTwoApp: App {
             TodoItem.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema,
-                                                    isStoredInMemoryOnly: false,
-                                                    cloudKitDatabase: .automatic)
+                                                    isStoredInMemoryOnly: false)
 
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
