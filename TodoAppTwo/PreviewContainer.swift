@@ -49,8 +49,8 @@ class PreviewContainer {
                 ("SwiftUI 공부", calendar.date(byAdding: .day, value: 7, to: today)!, .high, dueDate, nil),
             ]
             
-            for (title, date, priority, due, category) in todos {
-                let todo = TodoItem(title: title, priority: priority, dueDate: due, category: category, createdAt: date)
+            for (title, due, priority, createdAt, category) in todos {
+                    let todo = TodoItem(title: title, priority: priority, dueDate: due, category: category, createdAt: createdAt)
                 container.mainContext.insert(todo)
             }
             
