@@ -26,6 +26,13 @@ struct TodoRowView: View {
                 }
             }
             Spacer()
+            if let category = todo.category {
+                Text(category.name ?? "-")
+                    .font(.caption)
+                    .padding(4)
+                    .background(Color.blue.opacity(0.2))
+                    .clipShape(.rect(cornerRadius: 4))
+            }
             PriorityBadge(priority: todo.priority)
         }
         .onTapGesture {
@@ -51,7 +58,8 @@ struct TodoRowView: View {
 #Preview {
     NavigationStack {
         List {
-            TodoRowView(todo: TodoItem(title: "Hello, world!", dueDate: Date().addingTimeInterval(1000)))
+            TodoRowView(todo: TodoItem(title: "Hello, world!", dueDate: Date().addingTimeInterval(1000),
+                                       category: Category(name: "업무")))
         }
         .navigationTitle("Todo List")
     }
