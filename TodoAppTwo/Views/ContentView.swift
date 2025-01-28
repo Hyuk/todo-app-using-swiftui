@@ -54,7 +54,11 @@ struct ContentView: View {
                         .navigationTitle("Todo List")
                         .toolbar {
                             ToolbarItem(placement: .navigationBarTrailing) {
-                                EditButton()
+                                NavigationLink {
+                                    CategoryListView()
+                                } label: {
+                                    Image(systemName: "gearshape.fill")
+                                }
                             }
                             ToolbarItem {
                                 Button(action: {
