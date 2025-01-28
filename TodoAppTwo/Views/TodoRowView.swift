@@ -9,6 +9,12 @@ import SwiftUI
 
 struct TodoRowView: View {
     let todo: TodoItem
+    let showCategory: Bool
+    
+    init(todo: TodoItem, showCategory: Bool = true) {
+        self.todo = todo
+        self.showCategory = showCategory
+    }
     
     @State private var showingEditView: Bool = false
     
@@ -26,7 +32,7 @@ struct TodoRowView: View {
                 }
             }
             Spacer()
-            if let category = todo.category {
+            if showCategory, let category = todo.category {
                 Text(category.name ?? "-")
                     .font(.caption)
                     .padding(4)

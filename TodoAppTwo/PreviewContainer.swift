@@ -53,6 +53,7 @@ class PreviewContainer {
             ("운동하기", calendar.date(byAdding: .day, value: 5, to: today)!, .high, dueDate, categories[1]),
             ("책 읽기", calendar.date(byAdding: .day, value: 6, to: today)!, .high, dueDate, categories[2]),
             ("SwiftUI 공부", calendar.date(byAdding: .day, value: 7, to: today)!, .high, dueDate, categories[2]),
+            ("TEST", calendar.date(byAdding: .day, value: 3, to: today)!, .low, dueDate, nil),
         ]
         
         for (title, due, priority, createdAt, category) in todos {
